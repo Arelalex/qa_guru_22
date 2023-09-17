@@ -34,12 +34,14 @@ public class JUnit5ForSoftAssertions {
         $x("//a[@id='wiki-tab']").click();
 
         //Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions (попробовала найти элемент коллекции)
-        $$x("//div[@class='markdown-body']//ul/..//li").get(7).shouldHave(text("Soft assertions"));
+        $x("//button[contains(text(),'Show 2 more pages…')]").click(); //раскрыть список страниц справа
+        $$x("//li[@class='Box-row wiki-more-pages px-2 py-2']").get(1).shouldHave(text("SoftAssertions"));
 
         //Откройте страницу SoftAssertions
-        $x("//a[contains(text(),'Soft assertions')]").click();
+        $x("//a[contains(text(),'SoftAssertions')]").click();
 
         //Проверьте что внутри есть пример кода для JUnit5
+        $x("//h4[contains(text(),'3. Using JUnit5 extend test class:')]").scrollTo(); //подскроллить к блоку с JUNIT5
         $x("//span[text()='ExtendWith']/..").shouldHave(text(code));
     }
 }
